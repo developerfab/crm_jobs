@@ -12,5 +12,5 @@ class Oferta (models.Model):
 		verbose_name_plural = "Ofertas"
 
 	def __unicode__ (self):
-		return u"%s -  %s" % (empresa, str(salario))
+		return u"%s -  $%s" % (self.empresa, str(self.salario))
 
