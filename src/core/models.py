@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from taggit.managers import TaggableManager
 
 
 class Oferta (models.Model):
@@ -10,6 +11,7 @@ class Oferta (models.Model):
     tecnologias = models.TextField()
     estado = models.BooleanField(default=True)
     fecha = models.DateTimeField(auto_now_add=True, blank=True)
+    tags = TaggableManager()
 
     class Meta:
         verbose_name_plural = "Ofertas"
