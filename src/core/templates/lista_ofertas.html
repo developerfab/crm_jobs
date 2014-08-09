@@ -1,0 +1,31 @@
+<meta charset="UTF-8" >
+
+<form action="/buscar_ofertas/" method="POST">
+{% csrf_token %}
+  <input type="text" name="palabras">
+  <button type="submit">enviar</button>
+</form>
+
+{% for oferta in ofertas %}
+  <div>
+    {# Each "oferta" is a Contact model object. #}
+    {{ oferta.empresa }}<br />
+    {{ oferta.funciones }}
+  </div>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if ofertas.has_previous %}
+            <a href="?page={{ ofertas.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ ofertas.number }} of {{ ofertas.paginator.num_pages }}.
+        </span>
+
+        {% if ofertas.has_next %}
+            <a href="?page={{ ofertas.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
