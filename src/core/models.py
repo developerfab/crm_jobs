@@ -7,6 +7,7 @@ class Oferta (models.Model):
 	salario = models.DecimalField(max_digits=12, decimal_places=2)
 	funciones = models.TextField()
 	beneficios = models.TextField()
+	tecnologias = models.TextField()
 
 	class Meta:
 		verbose_name_plural = "Ofertas"
