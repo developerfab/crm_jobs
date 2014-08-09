@@ -80,9 +80,8 @@ header {
     background: #18bc9c;
 }
 
-header .container {
+.content-landing {
     padding-top: 100px;
-    padding-bottom: 50px;
 }
 
 header img {
