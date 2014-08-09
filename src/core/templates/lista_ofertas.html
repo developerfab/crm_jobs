@@ -4,6 +4,11 @@
     {# Each "oferta" is a Contact model object. #}
     {{ oferta.empresa|upper }}<br />
 {% endfor %}
+<form action="/buscar_ofertas/" method="POST">
+{% csrf_token %}
+  <input type="text" name="palabras">
+  <button type="submit">enviar</button>
+</form>
 
 <div class="pagination">
     <span class="step-links">
