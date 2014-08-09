@@ -1,14 +1,18 @@
 <meta charset="UTF-8" >
 
-{% for oferta in ofertas %}
-    {# Each "oferta" is a Contact model object. #}
-    {{ oferta.empresa|upper }}<br />
-{% endfor %}
 <form action="/buscar_ofertas/" method="POST">
 {% csrf_token %}
   <input type="text" name="palabras">
   <button type="submit">enviar</button>
 </form>
+
+{% for oferta in ofertas %}
+  <div>
+    {# Each "oferta" is a Contact model object. #}
+    {{ oferta.empresa }}<br />
+    {{ oferta.funciones }}
+  </div>
+{% endfor %}
 
 <div class="pagination">
     <span class="step-links">

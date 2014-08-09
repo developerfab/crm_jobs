@@ -11,7 +11,7 @@ import operator
 def buscar_ofertas(request):
     try:
         busqueda = request.POST['palabras'].replace(" ", "").split(",")
-        ofertas = Oferta.objects.filter(reduce(operator.or_, ((Q(tecnologias__contains=x) | Q(funciones__contains=x)) for x in busqueda)))
+        ofertas = Oferta.objects.filter(reduce(operator.or_, ((Q(tecnologias__contains=x) | Q(funciones__contains=x) | Q(empresa__contains=x)) for x in busqueda)))
 
     except Exception, e:
         print e
