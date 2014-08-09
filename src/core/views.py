@@ -27,33 +27,13 @@ def buscar_ofertas(request):
         ofertas = paginator.page(1)
     return render(request, 'lista_ofertas.html', {"ofertas": ofertas, 'origen': "Resultados de la busqueda"})
 
-
-#Muestra ofertas similares dado un Id de otra oferta
-def buscar_ofertas_similares(request):
-    try:
-        id_oferta_original = request.GET['id']
-        ofertas_similares = Oferta.objects.get(id=id_oferta_original).tags.similar_objects()
-    except:
-        ofertas_similares = []
-    paginator = Paginator(ofertas_similares, 25)
-    try:
-        pagina = request.GET.get('page')
-    except:
-        pagina = 1
-    try:
-        ofertas = paginator.page(pagina)
-    except:
-        ofertas = paginator.page(1)
-
-    return render(request, 'lista_ofertas.html', {"ofertas": ofertas, 'origen': "Resultados de ofertas similares"})
-
 #Esta funcion se encarga de enviar la oferta seleccionada de manera individual
 def ver_oferta(request):
     try:
         identificador = request.GET['id']
         oferta = Oferta.objects.get(id=identificador)
-        print(oferta)
+        ofertas_similares = Oferta.objects.get(id=identificador).tags.similar_objects()
     except:
         oferta = None
-    return render(request, 'oferta.html', {"oferta":oferta})
+    return render(request, 'oferta.html', {"oferta":oferta, "similares":ofertas_similares})
 

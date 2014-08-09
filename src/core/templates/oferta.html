@@ -1,3 +1,25 @@
 <meta charset="UTF-8">
 
-  <h1>{{ oferta.empresa}}</h1>
+<h1>{{ oferta.empresa }}</h1>
+<p>{{ oferta.funciones }} <br/> 
+   {{ oferta.beneficios }}<br/>
+   {{ oferta.tecnologias}}<br/>
+   {{ oferta.fecha}}
+   </p>
+<h2>{% if oferta.estado %} 
+      Activo 
+    {% else %}
+      No activo
+    {% endif %}
+</h2>
+
+<div>
+  
+{% for oferta in similares %}
+  <div>
+    {# Each "oferta" is a Contact model object. #}
+    {{ oferta.empresa }}<br />
+    {{ oferta.funciones }}
+  </div>
+{% endfor %}
+</div>
