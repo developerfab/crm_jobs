@@ -7,7 +7,7 @@ from core.models import *
 from django.db.models import Q
 import operator
 
-
+#Esta funcion se encarga de buscar las ofertas que se reciben a traves del request
 def buscar_ofertas(request):
     try:
         busqueda = request.POST['palabras'].replace(" ", "").split(",")
@@ -25,7 +25,6 @@ def buscar_ofertas(request):
         ofertas = paginator.page(pagina)
     except:
         ofertas = paginator.page(1)
-
     return render(request, 'lista_ofertas.html', {"ofertas": ofertas, 'origen': "Resultados de la busqueda"})
 
 
@@ -47,3 +46,14 @@ def buscar_ofertas_similares(request):
         ofertas = paginator.page(1)
 
     return render(request, 'lista_ofertas.html', {"ofertas": ofertas, 'origen': "Resultados de ofertas similares"})
+
+#Esta funcion se encarga de enviar la oferta seleccionada de manera individual
+def ver_oferta(request):
+    try:
+        identificador = request.GET['id']
+        oferta = Oferta.objects.get(id=identificador)
+        print(oferta)
+    except:
+        oferta = None
+    return render(request, 'oferta.html', {"oferta":oferta})
+
