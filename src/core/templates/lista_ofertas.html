@@ -1,0 +1,22 @@
+<meta charset="UTF-8" >
+
+{% for oferta in ofertas %}
+    {# Each "oferta" is a Contact model object. #}
+    {{ oferta.empresa|upper }}<br />
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if ofertas.has_previous %}
+            <a href="?page={{ ofertas.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ ofertas.number }} of {{ ofertas.paginator.num_pages }}.
+        </span>
+
+        {% if ofertas.has_next %}
+            <a href="?page={{ ofertas.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
