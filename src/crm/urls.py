@@ -11,4 +11,5 @@ urlpatterns = patterns('',
 	url(r'^', include('crm.landing.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ofertas/', include('core.urls')),
+
 )
