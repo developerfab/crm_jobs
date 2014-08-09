@@ -2,3 +2,4 @@ Django==1.6.5
 argparse==1.2.1
 ipython==2.2.0
 wsgiref==0.1.2
+django-taggit==0.12

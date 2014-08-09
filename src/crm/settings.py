@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'core',
     'crm.landing',
+    'taggit',
 )
 
 MIDDLEWARE_CLASSES = (

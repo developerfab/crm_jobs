@@ -16,7 +16,6 @@ def buscar_ofertas(request):
     except Exception, e:
         print e
         ofertas = Oferta.objects.all()
-
     paginator = Paginator(ofertas, 25)
     try:
         pagina = request.GET.get('page')
@@ -27,4 +26,24 @@ def buscar_ofertas(request):
     except:
         ofertas = paginator.page(1)
 
-    return render(request, 'lista_ofertas.html', {"ofertas": ofertas})
+    return render(request, 'lista_ofertas.html', {"ofertas": ofertas, 'origen': "Resultados de la busqueda"})
+
+
+#Muestra ofertas similares dado un Id de otra oferta
+def buscar_ofertas_similares(request):
+    try:
+        id_oferta_original = request.GET['id']
+        ofertas_similares = Oferta.objects.get(id=id_oferta_original).tags.similar_objects()
+    except:
+        ofertas_similares = []
+    paginator = Paginator(ofertas_similares, 25)
+    try:
+        pagina = request.GET.get('page')
+    except:
+        pagina = 1
+    try:
+        ofertas = paginator.page(pagina)
+    except:
+        ofertas = paginator.page(1)
+
+    return render(request, 'lista_ofertas.html', {"ofertas": ofertas, 'origen': "Resultados de ofertas similares"})
