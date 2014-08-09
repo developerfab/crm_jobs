@@ -10,5 +10,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 	url(r'^', include('crm.landing.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^ofertas/$', buscar_ofertas, name="buscar_ofertas"),
+    url(r'^ofertas/$', buscar_ofertas, name="ofertas"),
 )

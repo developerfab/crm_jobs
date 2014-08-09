@@ -1,6 +1,16 @@
-<meta charset="UTF-8" >
+{% extends "base.html" %}
 
-<form action="/buscar_ofertas/" method="POST">
+{% block title %}
+  Ofertas
+{% endblock title %}
+
+{% block navbar_items %}
+  
+{% endblock navbar_items %}
+
+{% block content %}
+
+<form action="/ofertas/" method="POST">
 {% csrf_token %}
   <input type="text" name="palabras">
   <button type="submit">enviar</button>
@@ -29,3 +39,5 @@
         {% endif %}
     </span>
 </div>
+
+{% endblock content %}

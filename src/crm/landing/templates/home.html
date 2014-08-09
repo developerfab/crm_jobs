@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% load staticfiles %}
+<!--Home page -->
+{% extends "base.html" }
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +7,28 @@
     Home    
 {% endblock title %}
 
+
+{% block navbar_items %}
+ <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        <li class="hidden">
+            <a href="#page-top"></a>
+        </li>
+        <li class="page-scroll">
+            <a href="/ofertas">Oferts</a>
+        </li>
+        <li class="page-scroll">
+            <a href="#about">About</a>
+        </li>
+        <li class="page-scroll">
+            <a href="#contact">Contact</a>
+        </li>
+        <li>
+            <a href="">Sign In</a>
+        </li>
+    </ul>
+</div>
+{% endblock navbar_items %}
 
 {% block content %}
 
