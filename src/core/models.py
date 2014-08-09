@@ -9,6 +9,7 @@ class Oferta (models.Model):
     beneficios = models.TextField()
     tecnologias = models.TextField()
     estado = models.BooleanField(default=True)
+    fecha = models.DateTimeField(auto_now_add=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Ofertas"
