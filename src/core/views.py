@@ -3,19 +3,21 @@ from django.template import RequestContext
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response, get_object_or_404
-from core.models import * 
+from core.models import *
 from django.db.models import Q
+import operator
 
 
-# Create your views here.
 def buscar_ofertas(request):
     try:
-        busqueda = request.POST['palabras']
-        ofertas = Oferta.objects.all().filter(Q(tecnologias__contains=busqueda) | Q(funciones__contains=busqueda) | Q(empresa__contains=busqueda))
-    except Exception, e:
-        ofertas = Oferta.objects.all()  
+        busqueda = request.POST['palabras'].replace(" ", "").split(",")
+        ofertas = Oferta.objects.filter(reduce(operator.or_, ((Q(tecnologias__contains=x) | Q(funciones__contains=x)) for x in busqueda)))
 
-    paginator = Paginator(ofertas, 25) 
+    except Exception, e:
+        print e
+        ofertas = Oferta.objects.all()
+
+    paginator = Paginator(ofertas, 25)
     try:
         pagina = request.GET.get('page')
     except:

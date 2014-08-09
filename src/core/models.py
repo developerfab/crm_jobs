@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
-# Create your models here.
 
 class Oferta (models.Model):
     empresa = models.CharField(max_length=100)
@@ -14,6 +13,5 @@ class Oferta (models.Model):
     class Meta:
         verbose_name_plural = "Ofertas"
 
-    def __unicode__ (self):
+    def __unicode__(self):
         return u"%s -  $%s" % (self.empresa, str(self.salario))
-
