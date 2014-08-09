@@ -1,4 +1,14 @@
-<meta charset="UTF-8" >
+{% extends "base.html" %}
+
+{% block title %}
+  Ofertas
+{% endblock title %}
+
+{% block navbar_items %}
+  
+{% endblock navbar_items %}
+
+{% block content %}
 
 <form action="/ofertas/" method="POST">
 {% csrf_token %}
@@ -29,3 +39,5 @@
         {% endif %}
     </span>
 </div>
+
+{% endblock content %}
