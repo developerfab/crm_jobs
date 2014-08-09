@@ -179,6 +179,11 @@ section.success {
     background: #18bc9c;
 }
 
+section.bluegray {
+    color: #fff;
+    background: #224150;
+}
+
 @media(max-width:767px) {
     section {
         padding: 75px 0;
