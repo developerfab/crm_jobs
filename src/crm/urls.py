@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'crm.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-
+	url(r'^', include('crm.landing.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ofertas/$', buscar_ofertas, name="buscar_ofertas"),
 )
