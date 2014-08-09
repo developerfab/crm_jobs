@@ -11,9 +11,8 @@ from django.db.models import Q
 def buscar_ofertas(request):
     try:
         busqueda = request.POST['palabras']
-        ofertas = Oferta.objects.all().filter(Q(tecnologia__contains=busqueda) | Q(tecnologia__contains=busqueda))
-    except:
-        print("excepcion")
+        ofertas = Oferta.objects.all().filter(Q(tecnologias__contains=busqueda) | Q(funciones__contains=busqueda) | Q(empresa__contains=busqueda))
+    except Exception, e:
         ofertas = Oferta.objects.all()  
 
     paginator = Paginator(ofertas, 25) 
