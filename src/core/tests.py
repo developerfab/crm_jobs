@@ -10,16 +10,16 @@ class OfertaTest(TestCase):
     
     def test_oferta(self):
         self.insertar()
-        empresa1 = Oferta.objects.get(empresa="codetag")
-        self.assertEqual(empresa1.empresa, "codetag")
+        oferta1 = Oferta.objects.get(empresa="codetag")
+        self.assertEqual(oferta1.empresa, "codetag")
 
     def test_todos(self):
         Oferta.objects.create(empresa="juanito", salario=12.500, funciones="no hace nada", beneficios="ninguno", tecnologias="java")
-        empresa2 = Oferta.objects.get(empresa="juanito")
-        self.assertEqual(empresa2.salario, 12.500)
-        self.assertEqual(empresa2.empresa,"juanito")
-        self.assertEqual(empresa2.funciones,"no hace nada")
-        self.assertEqual(empresa2.beneficios,"ninguno")
-        self.assertEqual(empresa2.tecnologias,"java")
+        oferta2 = Oferta.objects.get(oferta="juanito")
+        self.assertEqual(oferta2.salario, 12.500)
+        self.assertEqual(oferta2.empresa,"juanito")
+        self.assertEqual(oferta2.funciones,"no hace nada")
+        self.assertEqual(oferta2.beneficios,"ninguno")
+        self.assertEqual(oferta2.tecnologias,"java")
 
 # Create your tests here.
