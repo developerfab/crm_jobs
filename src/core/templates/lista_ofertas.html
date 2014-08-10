@@ -53,6 +53,10 @@
                     <td>
                        {{ oferta.funciones }}
                     </td>
+
+                    <td>
+                        <a href="visualizar/?id={{ oferta.id }}">Visualizar</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -78,6 +82,11 @@
         </div>
     </div>
 
+{% else %}
+
+    <div class="text-center">
+        <h3>No hay resultados para esta busqueda</h3>
+    </div>
 {% endif %}
 
 {% endblock content %}
