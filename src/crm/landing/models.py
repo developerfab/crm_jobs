@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
-# Create your models here.
+TYPE_CONTACT_USER_CHOICES = (
+    (1, 'Developer'),
+    (2, 'Compañia'),
+)
+
+
+class ContactUser(models.Model):
+    name = models.CharField(max_length=200)
+    kind = models.IntegerField(choices=TYPE_CONTACT_USER_CHOICES)
+    email = models.EmailField()
+    tel = models.CharField(max_length=30)
