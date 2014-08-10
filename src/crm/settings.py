@@ -69,6 +69,7 @@ INSTALLED_APPS = (
     'crm.landing',
     'taggit',
     'social_auth',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
