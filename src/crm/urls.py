@@ -4,7 +4,6 @@ from core.views import *
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -16,8 +15,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ofertas/', include('core.urls')),
     url(r'^perfil/$', perfil, name="perfil"),
-    url(r'^perfil/enlazar_dev$', display_enlazar_dev, name="enlazar perfiles"),
-    url(r'^perfil/enlazar_perfiles_dev$', enlazar_perfiles_dev),
+    url(r'^perfil/cuentas$', manejo_cuentas, name="enlazar perfiles"),
     url(r'^signup', 'core.views.registro', name='registro'),
 )
 
