@@ -15,6 +15,10 @@ urlpatterns = patterns('',
 	url(r'^', include('crm.landing.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ofertas/', include('core.urls')),
+    url(r'^perfil/$', perfil, name="perfil"),
+    url(r'^perfil/enlazar_dev$', display_enlazar_dev, name="enlazar perfiles"),
+    url(r'^perfil/enlazar_perfiles_dev$', enlazar_perfiles_dev),
+    
 )
 
 urlpatterns += patterns('core.views',
