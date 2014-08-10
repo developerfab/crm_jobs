@@ -1,6 +1,6 @@
 <meta charset="UTF-8" >
 
-<form action="/buscar_ofertas/" method="POST">
+<form action="/ofertas/" method="POST">
 {% csrf_token %}
   <input type="text" name="palabras">
   <button type="submit">enviar</button>
@@ -9,7 +9,7 @@
 {% for oferta in ofertas %}
   <div>
     {# Each "oferta" is a Contact model object. #}
-    {{ oferta.empresa }}<br />
+    <a href="visualizar/?id={{ oferta.id }}">{{ oferta.empresa }}</a><br />
     {{ oferta.funciones }}
   </div>
 {% endfor %}
