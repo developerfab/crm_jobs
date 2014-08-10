@@ -13,9 +13,15 @@ import operator
 
 #Esta funcion se encarga de buscar las ofertas que se reciben a traves del request
 def buscar_ofertas(request):
+    tecnologias = Tecnologia.objects.all()
+    niveles = NIVELES_DESARROLLADOR
+
     try:
         busqueda = request.POST['palabras'].replace(" ", "").split(",")
-        ofertas = Oferta.objects.filter(reduce(operator.or_, ((Q(tecnologias__contains=x) | Q(funciones__contains=x) | Q(empresa__contains=x)) for x in busqueda)))
+        tecnologia = request.POST['tecnologia']
+        nivel = request.POST['nivel']
+        print tecnologia
+        ofertas = Oferta.objects.filter(reduce(operator.or_, ((Q(funciones__contains=x) | Q(empresa__contains=x)) for x in busqueda)) & Q(tecnologias__nombre=tecnologia))
 
     except Exception, e:
         print e
@@ -29,7 +35,8 @@ def buscar_ofertas(request):
         ofertas = paginator.page(pagina)
     except:
         ofertas = paginator.page(1)
-    return render(request, 'lista_ofertas.html', {"ofertas": ofertas, 'origen': "Resultados de la busqueda"})
+
+    return render(request, 'lista_ofertas.html', {"ofertas": ofertas, 'origen': "Resultados de la busqueda", 'tecnologias': tecnologias, 'niveles': niveles})
 
 
 #Esta funcion se encarga de enviar la oferta seleccionada de manera individual

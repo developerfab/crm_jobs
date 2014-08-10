@@ -48,8 +48,8 @@ class Oferta (models.Model):
 
 class TecnologiaOferta(models.Model):
     tecnologia  = models.ForeignKey(Tecnologia)
-    nivel = models.IntegerField(choices=NIVELES_DESARROLLADOR)
     oferta = models.ForeignKey(Oferta)
+    nivel = models.IntegerField(choices=NIVELES_DESARROLLADOR)
 
 class TecnologiaDesarrollador(models.Model):
     desarrollador = models.ForeignKey(Desarrollador)

@@ -9,11 +9,11 @@ class TecnologiaDesarrolladorInline(admin.TabularInline):
 class DesarrolladorAdmin(admin.ModelAdmin):
 	inlines = [TecnologiaDesarrolladorInline]
 
-class TecnologiaDesarrolladorInline(admin.TabularInline):
-    model = TecnologiaDesarrollador
+class TecnologiaOfertaInline(admin.TabularInline):
+    model = TecnologiaOferta
 
 class OfertaAdmin(admin.ModelAdmin):
-	inlines = [TecnologiaDesarrolladorInline]
+	inlines = [TecnologiaOfertaInline]
 
 # Register your models here.
 admin.site.register(Oferta, OfertaAdmin)
