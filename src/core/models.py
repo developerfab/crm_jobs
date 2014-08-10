@@ -11,10 +11,10 @@ class Desarrollador(models.Model):
     user = models.OneToOneField(User) 
     telefono = models.CharField(max_length=13)
     tecnologias = models.TextField()
-    perfil_github = models.URLField()
-    perfil_linkedin = models.URLField()
-    perfil_bitbucked = models.URLField()
-    perfil_twitter = models.URLField()
+    perfil_github = models.URLField(blank=True)
+    perfil_linkedin = models.URLField(blank=True)
+    perfil_bitbucked = models.URLField(blank=True)
+    perfil_twitter = models.URLField(blank=True)
 
 
     USERNAME_FIELD = 'email'
