@@ -12,6 +12,7 @@ class Desarrollador(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
+
     nombre = models.CharField(max_length=100)
     telefono = models.CharField(max_length=13)
     tecnologias = models.TextField()
@@ -21,6 +22,9 @@ class Desarrollador(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
 
+    class Meta:
+        verbose_name_plural = "Desarrolladores"
+        
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
         # Simplest possible answer: Yes, always
