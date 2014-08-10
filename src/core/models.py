@@ -1,24 +1,21 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from taggit.managers import TaggableManager
+from django.contrib.auth.models import User
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
 
-class Desarrollador(AbstractBaseUser):
-    email = models.EmailField(
-        verbose_name='Correo',
-        max_length=255,
-        unique=True,
-    )
-
-    nombre = models.CharField(max_length=100)
+class Desarrollador(models.Model):
+    user = models.OneToOneField(User) 
     telefono = models.CharField(max_length=13)
     tecnologias = models.TextField()
+    perfil_github = models.URLField()
+    perfil_linkedin = models.URLField()
+    perfil_bitbucked = models.URLField()
+    perfil_twitter = models.URLField()
 
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
 

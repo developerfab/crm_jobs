@@ -25,7 +25,12 @@
 		<br/>
 		
 		{% if oferta.estado %}<br/> 
-		<button type="button" class="btn btn-primary">Aplicar oferta</button>
+        <form action="vincular/" method="post">
+        {% csrf_token %}
+          <input type="hidden" value="{{ oferta.id }}" name="id_oferta">
+		  <button type="submit" class="btn btn-primary">Aplicar oferta</button>
+        </form>
+
 	  
 		{% else %}
 		 <button type="button" class="btn btn-warning">Oferta vencida</button>
