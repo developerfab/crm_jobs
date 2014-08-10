@@ -85,10 +85,12 @@ def login_user(request):
             print("error asdf")
             return render(request, 'login.html')
 
+#logout se encarga de finalizar la sesion del usuario y redirigirlo a la pagina principal
 def logout_user(request):
     logout(request)
     return redirect('/')
-    
+
+#Esta funcion se encarga de retornar el perfil adecuado a mostrar en cada usuario
 def perfil(request):
     if request.GET.get('desarrollador'):
         if request.user.id == int(request.GET.get('desarrollador')):
@@ -97,9 +99,12 @@ def perfil(request):
             return render(request, 'perfil_dev_pub.html')
         
     elif request.GET.get('empresa'):
-		
+		if(request.user.id == int(reques.GET.get('empresa'))):
+            return render(request, 'perfil_emp_priv.html')
+        else:
+            return render(request, 'perfil_emp_pub.html')
         id_emp = request.GET.get('empresa')
-        return render(request, 'perfil_emp.html',{'id_emo':id_emp})
+        return render(request, 'perfil_emp.html',{'id_emp':id_emp})
         
     else:
         return render(request, 'home.html')
