@@ -42,17 +42,20 @@ def ver_oferta(request):
         oferta = None
     return render(request, 'oferta.html', {"oferta": oferta, "similares": ofertas_similares})
 
+#Esta funcion se encarga de vincular al usuario a una oferta
+
 @login_required(login_url="/login/")
 def vincular_oferta(request):
     id_usuario = request.user.id
     id_oferta = request.POST['id_oferta']
+    info_oferta = Oferta.objects.get(id=id_oferta)
     usuario = User.objects.get(id=id_usuario)
     #aplicante es un objeto tipo desarrollador
     aplicante = Desarrollador.objects.get(user=usuario)
     oferta = Oferta.objects.get(id=id_oferta)
     oferta.aplicantes.add(aplicante)
     oferta.save()
-    return render(request, 'oferta.html', {"mensaje":"Aplicacion correcta", "msn":True})
+    return render(request, 'oferta.html', {"mensaje":"Aplicacion correcta", "msn":True, "oferta":info_oferta})
     print(oferta)
 
 #login de usuarios
