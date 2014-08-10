@@ -91,23 +91,23 @@ def logout_user(request):
     return redirect('/')
 
 #Esta funcion se encarga de retornar el perfil adecuado a mostrar en cada usuario
+"""
+Esta funcion recibe como parametro un mensaje en el get de la siguiente manera en ejemplo:
+http://localhost:8000/perfil/?id_user=1
+"""
 def perfil(request):
-    if request.GET.get('desarrollador'):
-        if request.user.id == int(request.GET.get('desarrollador')):
-            return render(request, 'perfil_dev_priv.html')
-        else:
-            return render(request, 'perfil_dev_pub.html')
-        
-    elif request.GET.get('empresa'):
-		if(request.user.id == int(reques.GET.get('empresa'))):
-            return render(request, 'perfil_emp_priv.html')
-        else:
-            return render(request, 'perfil_emp_pub.html')
-        id_emp = request.GET.get('empresa')
-        return render(request, 'perfil_emp.html',{'id_emp':id_emp})
-        
+    id_user = request.GET['id_user']
+    usuario = User.objects.get(id=int(id_user))
+    if hasattr(usuario, 'desarrollador'):
+        if int(id_user) == request.user.id:
+            return render(request, 'perfil_dev_priv.html', { "developer" : usuario.desarrollador })
+        return render(request, 'perfil_dev_pub.html', { "developer" : usuario.desarrollador })
+    elif hasattr(usuario, 'empresa'):
+        if int(id_user) == request.user.id:
+            return render(request, 'perfil_empresa_priv.html', {"empresa": usuario.empresa})
+        return render(request, 'perfil_empresa_pub.html', { "empresa" : usuario.empresa })
     else:
-        return render(request, 'home.html')
+        return rendirect('home')
 
 def display_enlazar_dev(request):
     d=Desarrollador.objects.get(id=request.user.id)
