@@ -1,1 +1,39 @@
+{% extends "base_landing.html" %}
 
+{% block title %}
+	Oferta de {{ oferta.empresa }}
+{% endblock title %}
+
+{% block content %}
+
+<header>
+<div class="row">
+	<div class="col-md-7 text-left">
+	<h1>{{ oferta.empresa }}</h1>
+	{{ oferta.empresa }}<br/>
+    {{ oferta.salario }}<br/> 
+    {{ oferta.funciones }}<br/>
+    {{ oferta.beneficios }}<br/> 
+    {{ oferta.tecnologias }}<br/>
+    {{ oferta.fecha }}<br/> 
+    {{ oferta.tags }}<br/>
+    {% if oferta.estado %}<br/> 
+      Activo 
+    {% else %}
+      No activo
+    {% endif %}
+	</div>
+	
+	<div class="col-md-5">
+		{% for oferta in similares %}
+  <div>
+    {# Each "oferta" is a Contact model object. #}
+    {{ oferta.empresa }}<br />
+    {{ oferta.funciones }}
+  </div>
+{% endfor %}
+	</div>
+</div>
+</header>
+
+{% endblock content %}
