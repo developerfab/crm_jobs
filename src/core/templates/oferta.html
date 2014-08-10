@@ -1,25 +1,63 @@
-<meta charset="UTF-8">
+{% extends "base_landing.html" %}
 
-<h1>{{ oferta.empresa }}</h1>
-<p>{{ oferta.funciones }} <br/> 
-   {{ oferta.beneficios }}<br/>
-   {{ oferta.tecnologias}}<br/>
-   {{ oferta.fecha}}
-   </p>
-<h2>{% if oferta.estado %} 
-      Activo 
-    {% else %}
-      No activo
-    {% endif %}
-</h2>
+{% block title %}
+	Oferta de {{ oferta.empresa }}
+{% endblock title %}
 
-<div>
-  
-{% for oferta in similares %}
-  <div>
-    {# Each "oferta" is a Contact model object. #}
-    {{ oferta.empresa }}<br />
-    {{ oferta.funciones }}
-  </div>
-{% endfor %}
+{% block content %}
+
+<header>
+<div class="col-md-12">
+	<div class="col-md-7 text-left ">
+		<h3>{{ oferta.empresa }}</h3>
+		{{ oferta.fecha }}<br/> 
+		<h5>
+			<strong>Empresa: </strong>{{ oferta.empresa }}<br/>
+			<strong>Salario: </strong>{{ oferta.salario }}<br/> 
+			<strong>Funciones: </strong>{{ oferta.funciones }}<br/>
+			<strong>Beneficios: </strong>{{ oferta.beneficios }}<br/> 
+			<strong>Tecnologias: </strong>{{ oferta.tecnologias }}<br/>
+		</h5>
+		<strong>Tags: </strong>
+		{% for name in oferta.tags.names %}
+			{{name}}, 
+		{% endfor %}
+		<br/>
+		
+		{% if oferta.estado %}<br/> 
+		<button type="button" class="btn btn-primary">Aplicar oferta</button>
+	  
+		{% else %}
+		 <button type="button" class="btn btn-warning">Oferta vencida</button>
+		{% endif %}
+	</div>
+	
 </div>
+	
+	
+<div class="row">
+	<h3>Ofertas similares</h3>
+	<div class="col-md-12 text-left ">
+		<div class="col-md-12 text-left ">
+		{% for oferta in similares %}
+		{# Each "oferta" is a Contact model object. #}
+		<hr/>
+		<h3>{{ oferta.empresa }}</h3>
+		{{ oferta.fecha }}<br/> 
+		<h5>
+			<strong>Empresa: </strong>{{ oferta.empresa }}<br/>
+			<strong>Salario: </strong>{{ oferta.salario }}<br/> 
+			<strong>Funciones: </strong>{{ oferta.funciones }}<br/>
+			<strong>Tecnologias: </strong>{{ oferta.tecnologias }}<br/>
+		</h5>
+		<a href="/ofertas/visualizar/?id={{ oferta.id }}">
+			<button type="button" class="btn btn-primary">Ver detalles</button>
+		</a>
+		{% endfor %}
+		</div>
+	</div>
+</div>
+
+</header>
+
+{% endblock content %}
