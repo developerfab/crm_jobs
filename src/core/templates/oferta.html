@@ -33,10 +33,19 @@
 
 	  
 		{% else %}
-		 <button type="button" class="btn btn-warning">Oferta vencida</button>
+		 <button type="button" class="btn btn-warning">Ya aplicaste para esta oferta</button>
 		{% endif %}
+        <br/>
+        <br/>
+        {% if msn %}
+          <div class="alert alert-danger fade in">
+          {{ mensaje }}
+          </div>
+          <script type="text/javascript">
+            $(".alert").alert('close');
+          </script>
+        {% endif %}
 	</div>
-	
 </div>
 	
 	
