@@ -23,8 +23,7 @@ class Desarrollador(models.Model):
     perfil_bitbucked = models.URLField(blank=True)
     perfil_twitter = models.URLField(blank=True)
     tecnologias = models.ManyToManyField(Tecnologia, through= 'TecnologiaDesarrollador')
-
-
+    
     class Meta:
         verbose_name_plural = "Desarrolladores"
 
