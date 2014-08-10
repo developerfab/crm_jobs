@@ -27,9 +27,19 @@ class Desarrollador(models.Model):
     class Meta:
         verbose_name_plural = "Desarrolladores"
 
+class Empresa(models.Model):
+    user = models.OneToOneField(User)
+    nit = models.CharField(max_length=20)
+    telefono = models.CharField(max_length=13)
+    direccion = models.TextField()
+    descripcion = models.TextField()
+    sitio_web = models.URLField(blank=True)
+
+    
+
 class Oferta (models.Model):
     nombre = models.CharField(max_length=100)
-    empresa = models.CharField(max_length=100)
+    empresa = models.ForeignKey(Empresa)
     salario = models.DecimalField(max_digits=12, decimal_places=2)
     funciones = models.TextField()
     beneficios = models.TextField()

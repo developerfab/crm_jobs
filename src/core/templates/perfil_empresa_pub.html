@@ -31,13 +31,12 @@
 {% endblock navbar_items %}
 
 {% block content %}
-            <div>
-              <h1>{{ developer.user.first_name}}&nbsp;{{ developer.user.last_name}}</h1>
-              {{ developer.user.username }}  
-              {{ develoter.telefono }}
-              {{ developer.perfil_github }}
-              {{ developer.perfil_linkedin }}
-              {{ developer.perfil_bitbucked }}
-              {{ developer.perfil_twitter }}
-            </div>
+
+<div>
+<br/>
+<h1>{{ empresa.user.username }}  </h1>
+<p>{{ empresa.descripcion }}</p>
+<p>{{ empresa.telefono }}</p>
+<s>{{ empresa.direccion }}</s>
+</div>
 {% endblock content %}
