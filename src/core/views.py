@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.template import RequestContext
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response, get_object_or_404
 from core.models import *
@@ -49,16 +49,26 @@ def vincular_oferta(request):
     print(usuario)
     print(oferta)
 
-#login 
-def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            login(request, user)
-            render(request, 'home.html')
-        else:
-            render(request, 'home.html')
+#login de usuarios
+def login_user(request):
+    if request.method == 'GET':
+        return render(request, "login.html")
     else:
-        render(request, 'home.html')
+        username = request.POST['username']
+        password = request.POST['password']
+        print("user: "+username+" pass: "+password)
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('landing')
+            else:
+                print("error usuario inactivo")
+                return render(request, 'login.html')
+        else:
+            print("error asdf")
+            return render(request, 'login.html')
+
+def logout_user(request):
+    logout(request)
+    return redirect('/')

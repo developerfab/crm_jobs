@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     url(r'^ofertas/', include('core.urls')),
 )
 
-urlpatterns += patterns('django.contrib.auth.views',
-    url(r'^login/$', 'login', {'template_name': 'login.html' } , name='crm_login'),
-    url(r'^logout/$', 'logout', {'next_page': '/'}, name='crm_logout'),
+urlpatterns += patterns('core.views',
+    url(r'^login/$', 'login_user', name='crm_login'),
+    url(r'^logout/$', 'logout_user', name='crm_logout'),
 )
