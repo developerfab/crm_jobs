@@ -44,9 +44,15 @@ def ver_oferta(request):
 
 @login_required(login_url="/login/")
 def vincular_oferta(request):
-    usuario = request.user.id
-    oferta = request.POST['id_oferta']
-    print(usuario)
+    id_usuario = request.user.id
+    id_oferta = request.POST['id_oferta']
+    usuario = User.objects.get(id=id_usuario)
+    #aplicante es un objeto tipo desarrollador
+    aplicante = Desarrollador.objects.get(user=usuario)
+    oferta = Oferta.objects.get(id=id_oferta)
+    oferta.aplicantes.add(aplicante)
+    oferta.save()
+    return render(request, 'oferta.html', {"mensaje":"Aplicacion correcta", "msn":True})
     print(oferta)
 
 #login de usuarios
