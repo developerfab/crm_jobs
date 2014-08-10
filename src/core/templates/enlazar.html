@@ -38,7 +38,7 @@
 		</div>
 		<div class="col-md-4">
 			<h1>Enlaza tus perfiles:</h1>
-			 <form name="form" method="post" action="enlazar_perfiles_dev">{% csrf_token %}
+			 <form name="form" method="post" action="/">{% csrf_token %}
 				<div class="form-group">
 					<label for="id_github">Github</label>
 					<input type="url" class="form-control" name="github" id="id_github" placeholder="github" value="{{github}}">
