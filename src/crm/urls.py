@@ -14,7 +14,7 @@ urlpatterns = patterns('',
 	url(r'^', include('crm.landing.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ofertas/', include('core.urls')),
-    url(r'^perfil/$', perfil, name="perfil"),
+    url(r'^perfil/(\d+)$', perfil, name="perfil"),
     url(r'^perfil/cuentas$', manejo_cuentas, name="enlazar perfiles"),
     url(r'^signup', 'core.views.registro', name='registro'),
 )

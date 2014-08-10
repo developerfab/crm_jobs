@@ -4,32 +4,6 @@
     Home    
 {% endblock title %}
 
-{% block navbar_items %}
- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav navbar-right">
-        <li class="hidden">
-            <a href="#page-top"></a>
-        </li>
-        <li class="page-scroll">
-            <a href="/ofertas">Ofertas</a>
-        </li>
-        <li class="page-scroll">
-            <a href="#about">Nosotros</a>
-        </li>
-        <li class="page-scroll">
-            <a href="#contact">Contáctenos</a>
-        </li>
-        <li class="page-scroll"> 
-       {% if user.is_authenticated %}
-         <a href="/logout/">Salir</a>
-         {% else %}
-         <a href="/login/">Acceder</a>
-        {% endif %}
-       </li>
-    </ul>
-</div>
-{% endblock navbar_items %}
-
 {% block content %}
 
 <!-- Header -->
