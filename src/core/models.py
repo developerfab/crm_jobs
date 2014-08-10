@@ -1,6 +1,45 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from taggit.managers import TaggableManager
+from django.contrib.auth.models import (
+    BaseUserManager, AbstractBaseUser
+)
+
+
+class Desarrollador(AbstractBaseUser):
+    email = models.EmailField(
+        verbose_name='Correo',
+        max_length=255,
+        unique=True,
+    )
+
+    nombre = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=13)
+    tecnologias = models.TextField()
+
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'email'
+
+    class Meta:
+        verbose_name_plural = "Desarrolladores"
+        
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
 
 
 class Oferta (models.Model):
@@ -12,6 +51,7 @@ class Oferta (models.Model):
     estado = models.BooleanField(default=True)
     fecha = models.DateTimeField(auto_now_add=True, blank=True)
     tags = TaggableManager()
+    aplicantes = models.ManyToManyField(Desarrollador)
 
     class Meta:
         verbose_name_plural = "Ofertas"
