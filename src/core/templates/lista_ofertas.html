@@ -15,10 +15,22 @@
 <div class="row text-center">
     <h2> Buscar Ofertas </h2>
     
-    <form action="/ofertas/" method="POST">
+    <form action="/ofertas/" method="POST" class="form-inline">
         {% csrf_token %}
         <div class="col-md-8 col-md-offset-1 form-group">
             <input class="form-control" type="text" name="palabras">
+            <label for="tecnologia">Seleccione tecnologia:</label>
+            <select name="tecnologia" class="form-control" id="tecnologia">
+            {% for tecnologia in tecnologias %}
+              <option value="{{ tecnologia.nombre }}" >{{ tecnologia.nombre }}</option>
+            {% endfor %}
+            </select>
+            <label for="niveles">Seleccione experiencia:</label>
+             <select name="nivel" class="form-control" id="niveles">
+                {% for nivel in niveles %}
+              <option value="{{ nivel.0 }}"> {{ nivel.1 }}</option>
+            {% endfor %} 
+            </select>
         </div>
         <div class="col-md-3">
             <button class="btn btn-info" type="submit">  
