@@ -9,7 +9,7 @@
 {% for oferta in ofertas %}
   <div>
     {# Each "oferta" is a Contact model object. #}
-    {{ oferta.empresa }}<br />
+    <a href="visualizar/?id={{ oferta.id }}">{{ oferta.empresa }}</a><br />
     {{ oferta.funciones }}
   </div>
 {% endfor %}
