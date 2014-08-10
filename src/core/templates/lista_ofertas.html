@@ -1,31 +1,83 @@
-<meta charset="UTF-8" >
+{% extends "base.html" %}
 
-<form action="/ofertas/" method="POST">
-{% csrf_token %}
-  <input type="text" name="palabras">
-  <button type="submit">enviar</button>
-</form>
+{% block title %}
+  Ofertas
+{% endblock title %}
 
-{% for oferta in ofertas %}
-  <div>
-    {# Each "oferta" is a Contact model object. #}
-    <a href="visualizar/?id={{ oferta.id }}">{{ oferta.empresa }}</a><br />
-    {{ oferta.funciones }}
-  </div>
-{% endfor %}
+{% block navbar_items %}
+  
+{% endblock navbar_items %}
 
-<div class="pagination">
-    <span class="step-links">
-        {% if ofertas.has_previous %}
-            <a href="?page={{ ofertas.previous_page_number }}">previous</a>
-        {% endif %}
+{% block content %}
 
-        <span class="current">
-            Page {{ ofertas.number }} of {{ ofertas.paginator.num_pages }}.
-        </span>
+<link rel="stylesheet" href="{{STATIC_URL}}css/ofertas.css" />
 
-        {% if ofertas.has_next %}
-            <a href="?page={{ ofertas.next_page_number }}">next</a>
-        {% endif %}
-    </span>
+<div class="row text-center">
+    <h2> Buscar Ofertas </h2>
+    
+    <form action="/ofertas/" method="POST">
+        {% csrf_token %}
+        <div class="col-md-8 col-md-offset-1 form-group">
+            <input class="form-control" type="text" name="palabras">
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-info" type="submit">  
+                <i class="fa fa-search"></i> Buscar
+            </button>
+        </div>
+    </form>
 </div>
+
+{% if ofertas|length > 0 %}
+    
+    <div class="col-md-12 lista-ofertas">
+
+         <div class="col-md-12 text-center">
+            <h2>Ofertas Encontradas</h2>
+        </div>
+
+        <table class="table">
+            
+            <thead>
+                <th><h3>Nombre</h3></th>
+                <th><h3>Descripcion</h3></th>
+            </thead>
+
+            <tbody>
+                {% for oferta in ofertas %}
+                <tr>
+                    <td>
+                        <h4>{{ oferta.empresa }}</h4>
+                    </td>
+
+                    <td>
+                       {{ oferta.funciones }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+
+    <div class="col-md-12 text-center">
+        <div class="pagination">
+            <span class="step-links">
+                {% if ofertas.has_previous %}
+                    <a href="?page={{ ofertas.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ ofertas.number }} of {{ ofertas.paginator.num_pages }}
+                </span>
+
+                {% if ofertas.has_next %}
+                    <a href="?page={{ ofertas.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+{% endif %}
+
+{% endblock content %}
