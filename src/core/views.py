@@ -72,3 +72,36 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('/')
+    
+def perfil(request):
+    if request.GET.get('desarrollador'):
+        if request.user.id == int(request.GET.get('desarrollador')):
+            return render(request, 'perfil_dev_priv.html')
+        else:
+            return render(request, 'perfil_dev_pub.html')
+        
+    elif request.GET.get('empresa'):
+		
+        id_emp = request.GET.get('empresa')
+        return render(request, 'perfil_emp.html',{'id_emo':id_emp})
+        
+    else:
+        return render(request, 'home.html')
+
+def display_enlazar_dev(request):
+    d=Desarrollador.objects.get(id=request.user.id)
+    github=d.perfil_github
+    bitbucket=d.perfil_bitbucked
+    linkedin=d.perfil_linkedin
+    twitter=d.perfil_twitter
+    return render(request, 'enlazar.html',{'github':github,'linkedin':linkedin,'twitter':twitter,'bitbucket':bitbucket})
+
+def enlazar_perfiles_dev(request):
+    d=Desarrollador.objects.get(id=request.user.id)
+    d.perfil_github = request.POST.get('github')
+    d.perfil_bitbucked = request.POST.get('bitbucket')
+    d.perfil_linkedin = request.POST.get('linkedin')
+    d.perfil_twitter = request.POST.get('twitter')
+    d.save()
+    return render(request, 'home.html')
+

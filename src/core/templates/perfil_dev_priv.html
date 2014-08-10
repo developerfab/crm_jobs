@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home    
+{% endblock title %}
+
+{% block navbar_items %}
+ <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        <li class="hidden">
+            <a href="#page-top"></a>
+        </li>
+        <li class="page-scroll">
+            <a href="/ofertas">Ofertas</a>
+        </li>
+        <li class="page-scroll">
+            <a href="#about">Nosotros</a>
+        </li>
+        <li class="page-scroll">
+            <a href="#contact">Contáctenos</a>
+        </li>
+        <li class="page-scroll"> 
+       {% if user.is_authenticated %}
+         <a href="/logout/">Salir</a>
+         {% else %}
+         <a href="/login/">Acceder</a>
+        {% endif %}
+       </li>
+    </ul>
+</div>
+{% endblock navbar_items %}
+
+{% block content %}
+<div class="container">
+	<br>
+	<div class="row">
+		<div class="col-md-9">
+			DATOS DEL PERFIL QUE EN ESTE MOMENTO NO ME IMPORTA 
+		</div>
+		<div class="col-md-3">
+			<button type="button" class="btn btn-primary btn-block">Subir CV</button>
+			<a href="/perfil/enlazar_dev">
+				<button type="button" class="btn btn-primary btn-block">Enlazar Perfiles</button>
+			</a>
+			<button type="button" class="btn btn-primary btn-block">Editar info personal</button>
+		</div>	
+	</div>
+
+</div>
+{% endblock content %}
