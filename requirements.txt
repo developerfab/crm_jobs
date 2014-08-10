@@ -3,3 +3,9 @@ argparse==1.2.1
 ipython==2.2.0
 wsgiref==0.1.2
 django-taggit==0.12
+django-social-auth==0.7.28
+httplib2==0.9
+ipython==2.2.0
+oauth2==1.5.211
+python-openid==2.2.5
+
