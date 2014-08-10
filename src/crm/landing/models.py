@@ -11,4 +11,4 @@ class ContactUser(models.Model):
     name = models.CharField(max_length=200)
     kind = models.IntegerField(choices=TYPE_CONTACT_USER_CHOICES)
     email = models.EmailField()
-    tel = models.CharField(max_length=30)
+    phone = models.CharField(max_length=30, blank=True, null=True)

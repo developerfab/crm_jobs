@@ -1,10 +1,8 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns('crm.landing.views',
-    # Examples:
-    # url(r'^$', 'crm.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-    url(r'^$', 'home', name='landing'),
-    url(r'^faq$', 'faq', name='faq'),
+                       url(r'^$', 'home', name='landing'),
+                       url(r'^faq$', 'faq', name='faq'),
+                       url(r'^mail/contact_me/$', 'contact_me', name='contact_me'),
 )
