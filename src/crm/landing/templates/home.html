@@ -11,17 +11,21 @@
             <a href="#page-top"></a>
         </li>
         <li class="page-scroll">
-            <a href="/ofertas">Oferts</a>
+            <a href="/ofertas">Ofertas</a>
         </li>
         <li class="page-scroll">
-            <a href="#about">About</a>
+            <a href="#about">Nosotros</a>
         </li>
         <li class="page-scroll">
-            <a href="#contact">Contact</a>
+            <a href="#contact">Contacto</a>
         </li>
-        <li>
-            <a href="">Sign In</a>
-        </li>
+        <li class="page-scroll"> 
+       {% if user.is_authenticated %}
+         <a href="/logout/">Salir</a>
+         {% else %}
+         <a href="/login/">Acceder</a>
+        {% endif %}
+       </li>
     </ul>
 </div>
 {% endblock navbar_items %}
@@ -72,7 +76,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2>Contact Me</h2>
+                <h2>Contacto</h2>
                 <hr class="star-primary">
             </div>
         </div>
