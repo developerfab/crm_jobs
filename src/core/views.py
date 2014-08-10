@@ -121,3 +121,15 @@ def enlazar_perfiles_dev(request):
     d.save()
     return render(request, 'home.html')
 
+def registro(request):
+    if request.method == 'GET':
+        return render(request, 'registro.html', {'tecnos': Tecnologia.objects.all(), 
+            'levels': NIVELES_DESARROLLADOR})
+
+    elif request.method == 'POST':
+        
+        habs = filter( (lambda key: 'tecno-' in  key or 'level-' in key), request.POST.keys())
+        indexes = [x.replace('level-', '') for x in habs if x.startswith('level-')]
+
+        for index in indexes:
+            print (request.POST['tecno-'+index], request.POST['level-'+index])

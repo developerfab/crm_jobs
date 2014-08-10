@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^perfil/$', perfil, name="perfil"),
     url(r'^perfil/enlazar_dev$', display_enlazar_dev, name="enlazar perfiles"),
     url(r'^perfil/enlazar_perfiles_dev$', enlazar_perfiles_dev),
-    
+    url(r'^signup', 'core.views.registro', name='registro'),
 )
 
 urlpatterns += patterns('core.views',

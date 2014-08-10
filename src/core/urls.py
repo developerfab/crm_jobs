@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^$', buscar_ofertas, name="buscar_ofertas"),
     url(r'^visualizar/$', ver_oferta, name="ver_oferta"),
     url(r'^visualizar/vincular/$', vincular_oferta, name="vincular_oferta"),
+
 )

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Registro
+{% endblock title %}
+
+{% block content %}
+
+<div class="text-center col-md-8 col-md-offset-2">
+
+    <h2>Registro</h2> <br />
+
+    <form class="form-horizontal" role="form" action="/signup/" method="POST">
+        {% csrf_token %}
+        <div class="col-md-offset-2">
+            <div class="form-group">
+                <label class="form-control-label col-md-2"> Nombre </label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" placeholder="Nombre" name="firstname"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label col-md-2" for="firstname"> Apellido </label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" placeholder="Nombre" name="lastname"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label col-md-2" for="firstname"> Correo </label>
+                <div class="col-md-6">
+                    <input class="form-control" type="email" placeholder="Nombre" id="email"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label col-md-2" for="firstname"> Telefono </label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" placeholder="Nombre" id="telephone"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="form-group">
+
+                <h2>Habilidades</h2>
+                <button type="button" class="btn btn-info" onclick="agregar_habilidad()">Agregar</button>
+
+                <div id="habilidades">
+                    <div id="h">
+                        <select name="tecno-1">
+                            {% for tecno in tecnos  %}
+                                <option value="{{tecno.name}}">{{tecno.name}}</option>
+                            {% endfor %}
+                        </select> 
+
+                        <select name="level-1">
+                            {% for level in levels %}
+                                <option value="{{tecno.0}}">{{tecno.1}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <a onclick=""> X </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-success" onclick="enviar()">Enviar</button>
+    </form>
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+<script>
+
+    var template = $("#h").clone();
+    var contador = 2;
+    
+    template.id = '';
+    add_delete($("#h"));
+
+    function add_delete(elm) {
+        elm.find("a").click(function() {
+            elm.remove();
+        });
+    }
+
+    function agregar_habilidad() {
+        var nuevo = template.clone();
+
+        nuevo.find("[name='tecno-1']").attr("name", "tecno-"+contador);
+        nuevo.find("[name='level-1']").attr("name", "level-"+contador);
+
+        add_delete(nuevo);
+
+        contador += 1;
+        $("#habilidades").append(nuevo);
+    }
+
+</script>
+    
+{% endblock scripts %}
