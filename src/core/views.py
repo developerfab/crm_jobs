@@ -127,9 +127,34 @@ def registro(request):
             'levels': NIVELES_DESARROLLADOR})
 
     elif request.method == 'POST':
-        
+
+        nombre = request.POST['firstname']
+        apellido = request.POST['lastname']
+        password = request.POST['password']
+        email = request.POST['email']
+        telefono = request.POST['telephone']
+        tecnologias = {}
+
+        # filtrar tecnologias desde el request
         habs = filter( (lambda key: 'tecno-' in  key or 'level-' in key), request.POST.keys())
         indexes = [x.replace('level-', '') for x in habs if x.startswith('level-')]
 
         for index in indexes:
-            print (request.POST['tecno-'+index], request.POST['level-'+index])
+            tecnologias[request.POST['tecno-'+index]] = request.POST['level-'+index]
+
+        perfil = Desarrollador()
+
+        perfil.user = User.objects.create_user(username=email, password=password)
+        perfil.user.firstname = nombre
+        perfil.user.lastname = apellido
+        perfil.user.save()
+
+        perfil.telefono = telefono
+        perfil.save()
+        
+        #guardar tecnologias
+        for tecno, nivel in tecnologias.items():
+            TecnologiaDesarrollador(tecnologia=Tecnologia.objects.get(nombre=tecno),
+                    desarrollador=perfil, nivel=nivel).save()
+
+        return redirect('/login')
